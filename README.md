@@ -11,7 +11,7 @@ An open-source chess Android application that lets you play against AI or other 
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/[username]/chess-android-app.git`
+1. Clone the repository: `git clone https://github.com/cucerdariancatalin/Chess.git`
 2. Open the project in Android Studio
 3. Build and run the app on an emulator or physical device
 
