@@ -1,2 +1,24 @@
-Chess is a game played between two opponents on opposite sides of a board containing 64 squares of alternating colors. Each player has 16 pieces: 1 king, 1 queen, 2 rooks, 2 bishops, 2 knights, and 8 pawns. The goal of the game is to checkmate the other king...
-W
+# Chess Android App
+
+An open-source chess Android application that lets you play against AI or other players.
+
+## Features
+
+- Sleek and easy-to-use interface
+- Play against AI with adjustable difficulty levels
+- Multiplayer mode to play against other players
+- Suitable for players of all skill levels, from beginners to experienced
+
+## Getting Started
+
+1. Clone the repository: `git clone https://github.com/[username]/chess-android-app.git`
+2. Open the project in Android Studio
+3. Build and run the app on an emulator or physical device
+
+## Contributing
+
+We welcome contributions to the project. If you want to contribute, please fork the repository and submit a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
