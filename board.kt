@@ -41,17 +41,3 @@ class ChessBoard {
 abstract class Piece {
     open fun isValidMove(fromX: Int, fromY: Int, toX: Int, toY: Int): Boolean = false
 }
-
-class Pawn(private val color: PieceColor) : Piece() {
-    override fun isValidMove(fromX: Int, fromY: Int, toX: Int, toY: Int): Boolean {
-        return if (color == PieceColor.BLACK) {
-            if (fromX == 6 && fromX - toX in 1..2 && fromY == toY) {
-                true
-            } else fromX - toX == 1 && fromY == toY
-        } else {
-            if (fromX == 1 && toX - fromX in 1..2 && fromY == toY) {
-                true
-            } else toX - fromX == 1 && fromY == toY
-        }
-    }
-}
