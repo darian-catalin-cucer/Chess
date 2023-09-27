@@ -3,30 +3,35 @@ package cucerdariancatalin.chess
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import cucerdariancatalin.chess.board.ChessBoardView
+import cucerdariancatalin.chess.board.ChessSquare
+import cucerdariancatalin.chess.game.ChessDeligate
+import cucerdariancatalin.chess.game.ChessGameModel
+import cucerdariancatalin.chess.game.ChessPiece
 
 const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), ChessDeligate {
 
-    private lateinit var chessView: ChessView
+    private lateinit var chessBoardView: ChessBoardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        chessView = findViewById<ChessView>(R.id.chess_view)
-        chessView.chessDeligate = this
+        chessBoardView = findViewById<ChessBoardView>(R.id.chess_view)
+        chessBoardView.chessDeligate = this
         findViewById<Button>(R.id.reset_button).setOnClickListener {
-            ChessModel.reset()
-            chessView.invalidate()
+            ChessGameModel.reset()
+            chessBoardView.invalidate()
         }
     }
 
-    override fun pieceAt(square: Square): ChessPiece? {
-        return ChessModel.pieceAt(square)
+    override fun pieceAt(chessSquare: ChessSquare): ChessPiece? {
+        return ChessGameModel.pieceAt(chessSquare)
     }
 
-    override fun movePiece(from: Square, to: Square) {
-        ChessModel.movePiece(from, to)
-        chessView.invalidate()
+    override fun movePiece(from: ChessSquare, to: ChessSquare) {
+        ChessGameModel.movePiece(from, to)
+        chessBoardView.invalidate()
     }
 }

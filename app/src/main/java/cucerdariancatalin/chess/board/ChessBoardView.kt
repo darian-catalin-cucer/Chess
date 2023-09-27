@@ -1,4 +1,4 @@
-package cucerdariancatalin.chess
+package cucerdariancatalin.chess.board
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -12,9 +12,11 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import cucerdariancatalin.chess.R
+import cucerdariancatalin.chess.game.ChessDeligate
+import cucerdariancatalin.chess.game.ChessPiece
 import kotlin.math.min
 
-class ChessView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+class ChessBoardView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     private val TAG = "ChessView"
 
     private val scaleFactor = 1.0f
@@ -74,7 +76,7 @@ class ChessView(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
             MotionEvent.ACTION_DOWN -> {
                 fromCol = ((event.x - originX) / cellSide).toInt()
                 fromRow = 7 - ((event.y - originY) / cellSide).toInt()
-                chessDeligate?.pieceAt(Square(fromCol, fromRow))?.let {
+                chessDeligate?.pieceAt(ChessSquare(fromCol, fromRow))?.let {
                     movingPiece = it
                     movingPieceBitmap = bitmaps[it.resId]
                 }
@@ -91,7 +93,7 @@ class ChessView(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
                 val row = 7 - ((event.y - originY) / cellSide).toInt()
                 Log.d(TAG, "from ($fromCol, $fromRow) to at ($col, $row)")
                 if (fromCol != col || fromRow != row) {
-                    chessDeligate?.movePiece(Square(fromCol, fromRow), Square(col, row))
+                    chessDeligate?.movePiece(ChessSquare(fromCol, fromRow), ChessSquare(col, row))
                 }
                 movingPiece = null
                 movingPieceBitmap = null
@@ -103,7 +105,7 @@ class ChessView(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
     private fun drawPieces(canvas: Canvas) {
         for (row in 0..7) {
             for (col in 0..7) {
-                chessDeligate?.pieceAt(Square(col, row))?.let {
+                chessDeligate?.pieceAt(ChessSquare(col, row))?.let {
                     if (it != movingPiece) {
                         drawPieceAt(canvas, col, row, it.resId)
                     }

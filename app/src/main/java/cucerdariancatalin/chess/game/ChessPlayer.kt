@@ -1,4 +1,4 @@
-package cucerdariancatalin.chess
+package cucerdariancatalin.chess.game
 
 enum class ChessPlayer {
     WHITE,

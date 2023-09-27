@@ -1,6 +1,6 @@
-package cucerdariancatalin.chess
+package cucerdariancatalin.chess.game
 
-enum class Chessman {
+enum class ChessPieceType {
     KING,
     QUEEN,
     BISHOP,
