@@ -34,4 +34,7 @@ class MainActivity : AppCompatActivity(), ChessDeligate {
         ChessGameModel.movePiece(from, to)
         chessBoardView.invalidate()
     }
+
+    // test
+
 }
