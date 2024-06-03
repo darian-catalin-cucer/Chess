@@ -1,40 +1,40 @@
 package cucerdariancatalin.chess
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import cucerdariancatalin.chess.board.ChessBoardView
-import cucerdariancatalin.chess.board.ChessSquare
-import cucerdariancatalin.chess.game.ChessDeligate
-import cucerdariancatalin.chess.game.ChessGameModel
-import cucerdariancatalin.chess.game.ChessPiece
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import cucerdariancatalin.chess.ui.app.Game
+import com.github.zsoltk.chesso.ui.base.ChessoTheme
 
-const val TAG = "MainActivity"
-
-class MainActivity : AppCompatActivity(), ChessDeligate {
-
-    private lateinit var chessBoardView: ChessBoardView
-
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        chessBoardView = findViewById<ChessBoardView>(R.id.chess_view)
-        chessBoardView.chessDeligate = this
-        findViewById<Button>(R.id.reset_button).setOnClickListener {
-            ChessGameModel.reset()
-            chessBoardView.invalidate()
+        val importGameText = when {
+            savedInstanceState == null && intent?.action == Intent.ACTION_SEND && "text/plain" == intent.type -> {
+                intent.getStringExtra(Intent.EXTRA_TEXT)
+            }
+            else -> null
+        }
+        setContent {
+            ChessoTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(color = MaterialTheme.colors.background) {
+                    Game(importGameText = importGameText)
+                }
+            }
         }
     }
+}
 
-    override fun pieceAt(chessSquare: ChessSquare): ChessPiece? {
-        return ChessGameModel.pieceAt(chessSquare)
+@Composable
+@Preview(showBackground = true)
+fun DefaultPreview() {
+    ChessoTheme {
+        Game()
     }
-
-    override fun movePiece(from: ChessSquare, to: ChessSquare) {
-        ChessGameModel.movePiece(from, to)
-        chessBoardView.invalidate()
-    }
-
-    // test1
-
 }
