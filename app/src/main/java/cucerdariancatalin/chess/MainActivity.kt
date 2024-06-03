@@ -35,6 +35,6 @@ class MainActivity : AppCompatActivity(), ChessDeligate {
         chessBoardView.invalidate()
     }
 
-    // test
+    // test1
 
 }
